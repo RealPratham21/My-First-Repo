@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        .Info{
+            font-size: 2rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        .moves{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .moves div{
+            font-size: 5rem;
+            margin-left: 40px;
+            display: inline-block;
+            background-color: aqua;
+            border-radius: 100%;
+            text-align: center;
+            align-items: center;
+            padding: 30px 30px;
+            cursor: pointer;
+        }
+        #yourChoice{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 2em;
+        }
+        #CpuChoice{
+            margin-top: 15px;
+            text-align: center;
+            font-size: 2em;
+        }
+        #status{
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+        #moves div:enabled{
+            background-color: blue;
+        }
+        .Scores{
+            display: flex;
+            margin-top: 50px;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .Scores div{
+            margin-left: 70px;
+            font-size: 1.75em;
+        }
+    </style>
+</head>
+<body>
+    <div class="Info">Pick your Choice!</div>
+    <div class="moves">
+        <div id="Rock" onclick="update('👊')" class="TheChoices">👊</div>
+        <div id="Paper" onclick="update('✋')" class="TheChoices">✋</div>
+        <div id="Scissors" onclick="update('✌')" class="TheChoices">✌</div>
+    </div>
+    <div id="yourChoice">Your Choice: </div>
+    <div id="CpuChoice">Computer Choice: </div>
+    <div id="status"></div>
+    <div class="Scores">
+        <div id="MyScore"></div>
+        <div id="PCScore"></div>
+    </div>
+</body>
+<script>
+    const myChoice = document.getElementById('yourChoice');
+    const CpuChoice = document.getElementById('CpuChoice');
+    const statusNow = document.getElementById('status');
+    const myScorern = document.getElementById('MyScore');
+    const PcScorern = document.getElementById('PCScore');
+    let myScore = 0;
+    let PcScore = 0;
+    const choices = ['Rock', 'Paper', 'Scissors'];
+    let UserChoice;
+    const changeColor = document.querySelectorAll('.TheChoices');
+    changeColor.forEach(element =>{
+        element.addEventListener("click", (element)=>{
+            element.target.style.backgroundColor = "blue";
+            setTimeout(()=>{
+                element.target.style.backgroundColor = "aqua";
+            }, 2000)
+        })
+    })
+    function update(element){
+        if (element == '👊'){
+            UserChoice = "Rock";
+            myChoice.textContent = `Your Choice: ${UserChoice}`;
+        }
+        else if (element == '✋'){
+            UserChoice = "Paper";
+            myChoice.textContent = `Your Choice: ${UserChoice}`;
+        }
+        else if (element == '✌'){
+            UserChoice = "Scissors";
+            myChoice.textContent = `Your Choice: ${UserChoice}`;
+        }
+        else{
+            myChoice.textContent = "Invalid!";
+        }
+        let PCChoice = choices[Math.floor(Math.random()*3)];
+        CpuChoice.textContent = `Computer Choice ${PCChoice}`;
+        if (UserChoice == PCChoice){
+            statusNow.textContent = "Tie!";
+        }
+        else if(UserChoice == 'Rock' && PCChoice == 'Paper'){
+            statusNow.textContent = "You Lost!";
+            PcScore += 1;
+            PcScorern.textContent = `PC Score: ${PcScore}`;
+        }
+        else if (UserChoice == "Rock" && PCChoice == "Scissors"){
+            statusNow.textContent = "You Won!";
+            myScore += 1;
+            myScorern.textContent = `My Score: ${myScore}`;
+        }
+        else if (UserChoice == "Paper" && PCChoice == "Rock"){
+            statusNow.textContent = "You Won!";
+            myScore += 1;
+            myScorern.textContent = `My Score: ${myScore}`;
+        }
+        else if (UserChoice == "Paper" && PCChoice == "Scissors"){
+            statusNow.textContent = "You Lost!";
+            PcScore += 1;
+            PcScorern.textContent = `PC Score: ${PcScore}`;
+        }
+        else if (UserChoice == "Scissors" && PCChoice == "Rock"){
+            statusNow.textContent = "You Lost!";
+            PcScore += 1;
+            PcScorern.textContent = `PC Score: ${PcScore}`;
+        }
+        else if(UserChoice == "Scissors" && PCChoice == "Paper"){
+            statusNow.textContent = "You Won!";
+            myScore += 1;
+            myScorern.textContent = `My Score: ${myScore}`;
+        }
+    }
+</script>
+</html>
