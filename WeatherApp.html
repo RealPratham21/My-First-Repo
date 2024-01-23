@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        *{
+            color: rgba(34, 30, 30, 0.808);
+            font-family: "Hind Siliguri", sans-serif;
+            font-weight: 550;
+            font-style: normal;
+        }
+        body{
+            background-color: hsl(168, 100%, 99%);
+        }
+        h1{
+            text-align: center;
+            font-size: 1.75rem;
+        }
+        .search{
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        #SearchBar{
+            display: inline-block;
+            width: 400px;
+            height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            border: none;
+            box-shadow: 2px 2px 20px rgb(255, 69, 37);
+            border-radius: 20px;
+        }
+        #SearchWeather{
+            margin-left: 50px;
+            border: none;
+            width: 100px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: hsl(120, 60%, 44%);
+            color: white;
+            border-radius: 2px;
+        }
+        .card{
+            width: 450px;
+            height: 500px;
+            background: linear-gradient(180deg, hsl(283, 92%, 30%), hsl(36, 98%, 70%));
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-top: 100px;
+            margin-left: 35vw;
+            box-shadow: 2px 2px 20px darkblue;
+            overflow: auto;
+        }
+        .card span{
+            display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-top: 50px;
+            
+        }
+        .HighLow{
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            font-size: 1.75rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Weather of any City!</h1>
+    <div class="search">
+        <input type="text" id="SearchBar" placeholder="Search for a City">
+        <button id="SearchWeather">Search</button>
+    </div>
+    <div class="card">
+        <span id="CityName">Weather In</span>
+        <span id="Temperature">27</span>
+        <div class="HighLow">High/Low:</div>
+        <span id="Clouds">Clear Skies</span>
+        <span id="Humidity">Humidity:</span>
+        <span id="Wind">Wind Speed:</span>
+        <span id="Emoji">☀</span>
+    </div>
+    <div class="temp"></div>
+</body>
+<script>
+    const Cards = document.querySelector('.card');
+    const DisplayWeather = document.querySelector('#Temperature');
+    const clickedBtn = document.getElementById('SearchWeather');
+    const ShowCity = document.getElementById('CityName');
+    const clouds = document.getElementById('Clouds');
+    const Emoji = document.getElementById('Emoji');
+    const HighLow = document.querySelector('.HighLow');
+    const Humidity = document.getElementById('Humidity');
+    const Winds = document.getElementById('Wind');
+    clickedBtn.addEventListener("click", event =>{
+        Cards.style.display = "flex";
+        const City = document.getElementById('SearchBar').value;
+        ShowCity.textContent = `Weather in ${City}`;
+        City.toLowerCase();
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${City}&appid=ca5773be361c1ea3ab65de0346885ed5`).then(value =>{
+        return value.json();    
+        }).then(value =>{
+            console.log(value);
+        DisplayWeather.textContent = `The Current Tempeature is: ${Math.floor(value.main.temp - 273)}°C`;
+        clouds.textContent = value.weather[0].description;
+        if ((value.main.temp-273) < 0){
+            Emoji.textContent = "🥶";
+        }
+        else if ((value.main.temp-273) < 15){
+            Emoji.textContent = '❄';
+        }
+        else if ((value.main.temp-273) < 30){
+            Emoji.textContent = '😎';
+        }
+        else{
+            Emoji.textContent = '🥵';
+        }
+        HighLow.textContent = `High/Low: ${Math.floor(value.main.temp_max-273)}/${Math.floor(value.main.temp_min-273)}`;
+        Humidity.textContent = `Humidity: ${value.main.humidity}%`;
+        Winds.textContent = `Winds are ${Math.floor(value.wind.speed)}km/hr at ${value.wind.deg}deg`;
+        })
+    })
+</script>
+
+</html>
