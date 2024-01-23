@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - Every Person at a Glance</title>
+</head>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            /* overflow: hidden; */
+        }
+        #Heading{
+            text-align: center;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 2px 2px 30px hsl(240, 36%, 46%);
+        }
+        .container{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            width: 450px;
+            height: 450px;
+            background-color: hsl(180, 100%, 90%);
+            /* justify-content: center; */
+            align-items: center;
+            padding: 20px;
+            font-size: 25px;
+            box-shadow: 2px 2px 30px hsl(240, 41%, 56%);
+        }
+        #Name{
+            margin-top: 15px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        #MyImage{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 3px 3px 20px rgb(37, 36, 36);
+        }
+        #Prev{
+            position: absolute;
+            top: 50%;
+            left: 35%;
+            padding: 15px;
+            font-size: 2em;
+            border: none;
+            background-color: hsl(180, 66%, 71%);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #Prev:hover{
+            background-color: hsl(180, 59%, 58%);
+        }
+        #Next{
+            position: absolute;
+            top: 50%;
+            right: 35%;
+            padding: 15px;
+            font-size: 2em;
+            border: none;
+            background-color: hsl(180, 66%, 71%);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #Next:hover{
+            background-color: hsl(180, 59%, 58%);
+        }
+        #Profession{
+            font-size: 15px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+        #Description{
+            font-size: 18px;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+<body>
+    <h1 id="Heading">Reviews - Everyone at a Glance</h1>
+    <main>
+        <div class="container">
+            <div class="box">
+                <img src="" alt="Image Error" id="MyImage">
+                <span id="Name"></span>
+                <span id="Profession"></span>
+                <span id="Description"></span>
+            </div>
+        </div>
+        <button id="Prev" class="Navig" onclick="PreviousProfile()"><</button>
+        <button id="Next" class="Navig" onclick="NextProfile()">></button>
+    </main>
+</body>
+<script>
+    const People = [{
+        "Name": "Dennis Altman",
+        "Profession": "Senior Software Engineer",
+        "Image": "https://img.freepik.com/free-photo/cheerful-young-caucasian-businessman_171337-727.jpg",
+        "Description": "Dennis Altman is an American-Danish Software Engineer who currently works at Google. He has been their top employee for the past 2 years consecutively. His current age is 34 and resides in San Francisco. He pursued in Bachelors in Computer Science from Stanford Univeristy."
+    },
+    {
+        "Name": "Lana Becker",
+        "Profession": "Counsaltant",
+        "Image": "https://img.freepik.com/free-photo/working-business-lady_1098-21057.jpg",
+        "Description": "Lana Becker is an American-Palestinian Counsaltant who currently works at Morgan Stanley. She has been their top employee for the past 1 year. Her current age is 28 and resides in Newark. She pursued her MBA from Wharton Univeristy." 
+    },
+    {
+        "Name": "David Johnson",
+        "Profession": "Real Estate Agent",
+        "Image": "https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1523313670927-R8S350LMHGCP5J681TCH/IF18CAC-213.jpg",
+        "Description": "David Johnson is an American Real Estate Agent who currently is Self-Employeed. He has been evading taxes for the past 10 years. His current age is 38 and resides in Michigan. He pursued his Bachelors in Marketing from NYU."
+    }
+]
+    const ProfileImage = document.getElementById('MyImage');
+    const ProfileName = document.getElementById('Name');
+    const ProfileProf = document.getElementById('Profession');
+    const ProfileDesc = document.getElementById('Description');
+    let curr_idx = 0;
+    ProfileImage.src = People[curr_idx].Image;
+    ProfileName.textContent = People[curr_idx].Name;
+    ProfileProf.textContent = People[curr_idx].Profession;
+    ProfileDesc.textContent = People[curr_idx].Description;
+    function NextProfile(){
+        curr_idx++;
+        if (curr_idx >= People.length){
+            curr_idx = 0;
+        }
+        updateProfile();
+    }
+    function PreviousProfile(){
+        curr_idx--;
+        if (curr_idx < 0){
+            curr_idx = People.length - 1;
+        }
+        updateProfile();
+    }
+    function updateProfile(){
+        ProfileImage.src = People[curr_idx].Image;
+        ProfileName.textContent = People[curr_idx].Name;
+        ProfileProf.textContent = People[curr_idx].Profession;
+        ProfileDesc.textContent = People[curr_idx].Description;
+    }
+</script>
+</html>
