@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Program</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            overflow: hidden;
+        }
+        #Heading{
+            text-align: center;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 2px 2px 30px gainsboro;
+            cursor: pointer;
+        }
+        .container{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #counter{
+            font-size: 5em;
+        }
+        .btns{
+            display: flex;
+        }
+        .btns button{
+            margin: 20px;
+            padding: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border: none;
+            background-color: hsl(120, 63%, 53%);
+            color: white;
+            border-radius: 5px;
+        }
+        .btns button:hover{
+            background-color: hsl(120, 56%, 43%);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="Heading">The Counter Program</h1>
+    <main>
+        <div class="container">
+            <span id="counter">0</span>
+            <div class="btns">
+                <button id="increase" onclick="increase()">Increase</button>
+                <button id="reset" onclick="reset()">Reset</button>
+                <button id="decrease" onclick="decrease()">Decrease</button>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    let Count = 0;
+    const Counter = document.getElementById('counter');
+    function increase(){
+        Count++;
+        Counter.textContent = Count;
+    }
+    function decrease(){
+        Count--;
+        Counter.textContent = Count;
+    }
+    function reset(){
+        Count = 0;
+        Counter.textContent = Count;
+    }
+</script>
+</html>
