@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .sidebar{
+            overflow: hidden;
+            width: 0px;
+            background-color: hsl(240, 37%, 37%);
+            color: white;
+            height: 100vh;
+        }
+        .logo{
+            padding-top: 30px;
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .sidebar li{
+            margin-left: 30px;
+            list-style: none;
+            font-size: 2rem;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+        #Menu{
+            position: absolute;
+            font-size: 2em;
+            right: 50px;
+            top: 20px;
+            cursor: pointer;
+        }
+        .show{
+            animation: showup;
+            animation-duration: 2s;
+        }
+        .hide{
+            animation: hidenow;
+            animation-duration: 2s;
+        }
+        @keyframes showup {
+            to{
+                width: 300px;
+            }
+        }
+        @keyframes hidenow {
+            to{
+                width: 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Indigo</div>
+        <div class="Options">
+            <ul>
+                <li>Flights</li>
+                <li>Careers</li>
+                <li>Meals</li>
+                <li>Services</li>
+                <li>Contact Us</li>
+            </ul>
+        </div>
+    </div>
+    <i class="fa-solid fa-bars" id="Menu"></i>
+</body>
+<script>
+    const buttontoclick = document.getElementById('Menu');
+    const SideBar = document.querySelector('.sidebar');
+    buttontoclick.addEventListener("click", () => {
+    if (SideBar.style.width == "300px") {
+        SideBar.classList.add('hide');
+        setTimeout(() => {
+        SideBar.style.width = "0px";
+        SideBar.classList.remove('hide'); // Corrected this line
+        }, 2000);
+    } else {
+        SideBar.classList.add('show');
+        setTimeout(() => {
+        SideBar.style.width = "300px";
+        SideBar.classList.remove('show');
+        }, 2000);
+    }
+    })
+    
+</script>
+</html>
