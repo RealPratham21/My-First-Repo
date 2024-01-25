@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        .container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-image: url('https://st.depositphotos.com/1038919/61442/i/450/depositphotos_614421074-stock-photo-abstract-japaneese-lansdcape-pink-tones.jpg');
+            justify-content: center;
+            align-items: center;
+        }
+        .Info{
+            color: hsl(0, 8%, 10%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            height: 100px;
+            background-color: blueviolet;
+            padding-left: 70px;
+            padding-right: 70px;
+            padding-top: 40px;
+            padding-bottom: 50px;
+            font-size: 3em;
+            border-radius: 20px;
+            box-shadow: 2px 2px 10px hsl(271, 51%, 52%);
+        }
+        #DisplayModal{
+            color: white;
+            margin-top: 30px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: transparent;
+            padding: 5px;
+            border-radius: 15px;
+            border: 3px solid white;
+        }
+        .overlay{
+            position: absolute;
+            display: none;
+            width: 300px;
+            height: 200px;
+            top: 35%;
+            left: 35%;
+            background-color: gray;
+            color: white;
+            font-size: 2em;
+            border-radius: 20px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 80px;
+            padding-right: 80px;
+            box-shadow: 2px 2px 10px gainsboro;
+        }
+        #close{
+            font-size: 1em;
+            height: 30px;
+            overflow: hidden;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            cursor: pointer;
+        }
+        .overlay:not(.overlay #close){
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="Info">
+            The Modal Project
+            <button id="DisplayModal" onclick="showpanel()">Click here to display Modal</button>
+        </div>
+    </div>
+    <div class="overlay">
+        <i class="fa-solid fa-xmark" id="close" onclick="closepanel()"></i>
+        This is the Overlay
+    </div>
+</body>
+<script>
+    const OverlapPanel = document.querySelector('.overlay');
+    const background = document.querySelector('.container');
+    function showpanel(){
+        OverlapPanel.style.display = "flex";
+        background.style.filter = "blur(5px)";
+    }
+    function closepanel(){
+        OverlapPanel.style.display = "none";
+        background.style.filter = "blur(0px)";
+    }
+</script>
+
+</html>
