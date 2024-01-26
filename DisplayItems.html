@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Items</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .Header{
+            text-align: center;
+            margin-top: 50px;
+        }
+        .options{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .options *{
+            margin-left: 50px;
+            font-size: 1.35em;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: hsl(209, 64%, 58%);
+            font-weight: bold;
+        }
+        #All{
+            background-color: hsl(209, 64%, 58%);
+            color: white;
+        }
+        .Dishes{
+            display: grid;
+            justify-content: center;
+            grid-gap: 50px;
+            grid-template-rows: repeat(4, 250px);
+            grid-template-columns: repeat(2, 500px);
+            padding: 50px;
+        }
+        .Dishes div{
+            cursor: pointer;
+        }
+        .Dishes *{
+            /* border: 2px solid black; */
+            overflow: hidden;
+            position: relative;
+        }
+        .Dishes div img{
+            width: 180px;
+        }
+        .info{
+            position: absolute;
+            right: 5px;
+            top: 10px;
+            width: 300px;
+        }
+        .NamePrice{
+            font-size: 2em;
+        }
+        hr{
+            margin-top: 10px;
+        }
+        .desc{
+            margin-top: 20px;
+        }
+        span{
+            color: hsl(51, 73%, 43%);
+            font-weight: bolder;
+        }
+        .Dishes div:hover{
+            box-shadow: 0px 0px 10px gray;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="Header">Our Menu</h1>
+    <div class="options">
+        <div id="All" onclick="displayAll()">All</div>
+        <div id="Breakfast" onclick="displayBreakfast()">Breakfast</div>
+        <div id="Lunch" onclick="displayLunch()">Lunch</div>
+        <div id="Dinner" onclick="displayDinner()">Dinner</div>
+    </div>
+    <div class="Dishes">
+        <div id="Dish1" class="Breakfast"><img src="https://www.cookwithmanali.com/wp-content/uploads/2022/04/Cold-Coffee.jpg" alt="">
+        <div class="info"><div class="NamePrice">Cold Coffee: <span>₹50</span></div>
+        <hr>
+        <div class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, recusandae sint voluptatibus voluptatum ullam velit expedita maiores vitae culpa sunt.</div>
+        </div>
+        </div>
+        <div id="Dish2" class="Lunch"><img src="https://i0.wp.com/polkapuffs.in/wp-content/uploads/2015/07/Mumbai-Pav-Bhaji-final-3.jpeg" alt="">
+            <div class="info"><div class="NamePrice">Pav Bhaji: <span>₹250</span></div>
+            <hr>
+            <div class="desc">Mumbai's street food delight! A medley of spiced vegetables, mashed and served with buttery pav bread, a true gastronomic experience.</div>
+            </div>
+        </div>
+        <div id="Dish3" class="Dinner"><img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2023/02/paneer-curry-dhaba-style.jpg" alt="">
+            <div class="info"><div class="NamePrice">Paneer Masala: <span>₹180</span></div>
+            <hr>
+            <div class="desc">Succulent cubes of paneer cooked in a rich, aromatic tomato-based gravy. A flavorsome dish that tantalizes your taste buds.</div>
+            </div>
+        </div>
+        <div id="Dish4" class="Dinner"><img src="https://www.currytrail.in/wp-content/uploads/2016/06/Chicken-Dum-Biryani.jpg" alt="">
+            <div class="info"><div class="NamePrice">Chicken Biryani: <span>₹300</span></div>
+            <hr>
+            <div class="desc">Fragrant basmati rice layered with tender chicken pieces, aromatic spices, and herbs. A royal feast that captures the essence of India.</div>
+            </div>
+        </div>
+        <div id="Dish5" class="Breakfast"><img src="https://www.cookwithmanali.com/wp-content/uploads/2021/09/Moong-Dal-Dosa.jpg" alt="">
+            <div class="info"><div class="NamePrice">Masala Dosa: <span>₹70</span></div>
+            <hr>
+            <div class="desc">Crispy rice crepe filled with a spiced potato mixture. Served with coconut chutney and tangy sambar for an authentic South Indian delight.</div>
+            </div>
+        </div>
+        <div id="Dish6" class="Lunch Dinner"><img src="https://georgeats.com/wp-content/uploads/2022/08/Cheesy-naan-3.jpg" alt="">
+            <div class="info"><div class="NamePrice">Garlic Naan: <span>₹35</span></div>
+            <hr>
+            <div class="desc">Soft and fluffy leavened bread, infused with garlic and butter. An ideal accompaniment to elevate any curry or Indian dish.</div>
+            </div>
+        </div>
+        <div id="Dish7" class="Lunch"><img src="https://rachnas-kitchen.com/wp-content/uploads/2015/06/Bhindi-Masala-1.jpg" alt="">
+            <div class="info"><div class="NamePrice">Bhindi Masala: <span>₹120</span></div>
+            <hr>
+            <div class="desc">Okra stir-fried to perfection with a blend of spices, creating a flavorful and aromatic side dish that complements any meal.</div>
+            </div>
+        </div>
+        <div id="Dish8" class="Lunch"><img src="https://indiaphile.info/wp-content/uploads/2023/02/stp-dal-chawal-7685.jpg" alt="">
+            <div class="info"><div class="NamePrice">Dal Chawal: <span>₹80</span></div>
+            <hr>
+            <div class="desc">Comfort on a plate! Lentils cooked to perfection, seasoned with aromatic spices, served with steamed rice. A classic Indian staple.</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const Breakfast = document.querySelectorAll('.Breakfast');
+    const Lunch = document.querySelectorAll('.Lunch');
+    const Dinner = document.querySelectorAll('.Dinner');
+    const all = document.getElementById('All');
+    const Breakie = document.getElementById('Breakfast');
+    const LunchWord = document.getElementById('Lunch');
+    const DinnerWord = document.getElementById('Dinner');
+
+    function displayAll(){
+        Breakfast.forEach(element =>{
+            element.style.display = "block";
+        })
+        Lunch.forEach(element =>{
+            element.style.display = "block";
+        })
+        Dinner.forEach(element =>{
+            element.style.display = "block";
+        })
+        all.style.backgroundColor = "hsl(209, 64%, 58%)";
+        all.style.color = "white";
+        LunchWord.style.backgroundColor = "white";
+        LunchWord.style.color = "hsl(209, 64%, 58%)";
+        Breakie.style.backgroundColor = "white";
+        Breakie.style.color = "hsl(209, 64%, 58%)";
+        DinnerWord.style.backgroundColor = "white";
+        DinnerWord.style.color = "hsl(209, 64%, 58%)";
+    }
+    function displayBreakfast(){
+        Breakfast.forEach(element =>{
+            element.style.display = "block";
+        })
+        Lunch.forEach(element =>{
+            element.style.display = "none";
+        })
+        Dinner.forEach(element =>{
+            element.style.display = "none";
+        })
+        all.style.backgroundColor = "white";
+        all.style.color = "hsl(209, 64%, 58%)";
+        LunchWord.style.backgroundColor = "white";
+        LunchWord.style.color = "hsl(209, 64%, 58%)";
+        Breakie.style.backgroundColor = "hsl(209, 64%, 58%)";
+        Breakie.style.color = "white";
+        DinnerWord.style.backgroundColor = "white";
+        DinnerWord.style.color = "hsl(209, 64%, 58%)";
+    }
+    function displayLunch(){
+        Breakfast.forEach(element =>{
+            element.style.display = "none";
+        })
+        Dinner.forEach(element =>{
+            element.style.display = "none";
+        })
+        Lunch.forEach(element =>{
+            element.style.display = "block";
+        })
+        all.style.backgroundColor = "hsl(209, 64%, 58%)";
+        all.style.color = "white";
+        all.style.backgroundColor = "white";
+        all.style.color = "hsl(209, 64%, 58%)";
+        LunchWord.style.backgroundColor = "hsl(209, 64%, 58%)";
+        LunchWord.style.color = "white";
+        Breakie.style.backgroundColor = "white";
+        Breakie.style.color = "hsl(209, 64%, 58%)";
+        DinnerWord.style.backgroundColor = "white";
+        DinnerWord.style.color = "hsl(209, 64%, 58%)";
+    }
+    function displayDinner(){
+        Breakfast.forEach(element =>{
+            element.style.display = "none";
+        })
+        Dinner.forEach(element =>{
+            element.style.display = "block";
+        })
+        Lunch.forEach(element =>{
+            element.style.display = "none";
+        })
+        all.style.backgroundColor = "white";
+        all.style.color = "hsl(209, 64%, 58%)";
+        LunchWord.style.backgroundColor = "white";
+        LunchWord.style.color = "hsl(209, 64%, 58%)";
+        Breakie.style.backgroundColor = "white";
+        Breakie.style.color = "hsl(209, 64%, 58%)";
+        DinnerWord.style.backgroundColor = "hsl(209, 64%, 58%)";
+        DinnerWord.style.color = "white";
+    }
+</script>
+</html>
