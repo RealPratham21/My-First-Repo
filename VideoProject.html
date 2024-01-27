@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Project</title>
+    <style>
+    *{
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    body{
+        overflow: hidden;
+    }
+    .bckvideo{
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
+        z-index: 1;
+    }
+    .text{
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3em;
+        color: white;
+    }
+    .overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: hsla(0, 0%, 0%, 0.692);
+        z-index: 2;
+    }
+    .control{
+        z-index: 4;
+        width: 120px;
+        height: 30px;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        background-color: blue;
+        cursor: pointer;
+        box-shadow: 0px 0px 10px white;
+    }
+    .shift{
+        position: absolute;
+        width: 60px;
+        height: 30px;
+        background-color: red;
+        border-radius: 20px;
+        left: 0;
+    }
+    .play{
+        margin-right: auto;
+    }
+    .goright{
+        animation: flowright;
+        animation-duration: 2s;
+    }
+    .goleft{
+        animation: flowleft;
+        animation-duration: 2s;
+    }
+    .Loader{
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    .Loader img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    @keyframes flowright{
+        to{
+            left: 60px;
+        }
+    }
+    @keyframes flowleft{
+        to{
+            left: 0;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <video muted autoplay loop class="bckvideo">
+        <source src="https://static.videezy.com/system/resources/previews/000/012/324/original/Venice_10.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="text">Video Project</div>
+    <button class="control">
+        <div class="play">Play</div>
+        <div class="shift flowleft"></div>
+        <div class="pause">Pause</div>
+    </button>
+    <div class="Loader">
+        <img src="https://art.pixilart.com/c55694183c6c163.gif" alt="">
+    </div>
+</body>
+<script>
+    const btn = document.querySelector('.control');
+    const video = document.querySelector('.bckvideo');
+    const shift = document.querySelector('.shift');
+    const loader = document.querySelector('.Loader');
+    while (document.readyState == 'Loading'){
+        loader.style.display = 'block';
+    }
+    document.addEventListener("DOMContentLoaded", ()=>{
+        loader.style.display = "none";
+    })
+    btn.addEventListener("click", ()=>{
+        if (shift.classList.contains('goleft')){
+            shift.classList.remove('goleft');
+            shift.classList.add('goright');
+            video.play();
+            setTimeout(()=>{
+            shift.style.left = "60px";
+        }, 2000);
+        }
+        else{
+            shift.classList.remove('goright');
+            shift.classList.add('goleft');
+            video.pause();
+            setTimeout(()=>{
+                shift.style.left = "0px";
+            }, 2000);
+        }
+    })
+    
+</script>
+</html>
