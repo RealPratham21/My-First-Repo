@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            /* overflow-x: hidden; */
+        }
+        body{
+            background-color: hsl(0, 0%, 100%);
+        }
+        .content{
+            display: grid;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            margin-top: 100px;
+            grid-template-columns: 450px 550px;
+            grid-template-rows: 300px;
+            column-gap: 50px;
+        }
+        .image img{
+            width: 100%;
+            height: 100%;
+            box-shadow: 0px 0px 10px gray;
+        }
+        .image{
+            width: 100%;
+            height: 100%;
+            background-color: aqua;
+        }
+        .info{
+            background-color: transparent;
+        }
+        .info *{
+            padding: 10px;
+        }
+        .countdown{
+            display: flex;
+            flex-direction: row;
+        }
+        .countdown > *{
+            display: flex;
+            flex-direction: column;
+            background-color: hsl(194, 88%, 13%);
+            color: white;
+            margin-left: 20px;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+        }
+        .label{
+            display: flex;
+            justify-content: center;
+            margin-top: -15px;
+            font-weight: lighter;
+        }
+        .Title{
+            font-size: 2em;
+            color: hsl(201, 71%, 20%);
+        }
+        .time{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .date{
+            font-weight: bold;
+            font-size: 1.1em;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="image">
+            <img src="https://amateurphotographer.com/wp-content/uploads/sites/7/2023/09/iPhone15Pro_Max_02.jpg" alt="">
+        </div>
+        <div class="info">
+            <div class="Title">Apple 15 Pro Max Giveaway!</div>
+            <div class="date">Giveaway ends on 29th January 2024 at 11: 30 AM IST!</div>
+            <div class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nesciunt esse porro? Dolorum eveniet, minus non in earum assumenda corporis deleniti deserunt iste, molestiae, voluptas esse temporibus ipsum reiciendis. Delectus consectetur modi esse velit, porro eum odio quia deleniti temporibus?</div>
+            <div class="countdown">
+                <div class="day">
+                    <div class="time" id="day">2</div>
+                    <div class="label">DAYS</div>
+                </div>
+                <div class="hour">
+                    <div class="time" id="hour">17</div>
+                    <div class="label">HOURS</div>
+                </div>
+                <div class="minute">
+                    <div class="time" id="minute">45</div>
+                    <div class="label">MINUTES</div>
+                </div>
+                <div class="seconds">
+                    <div class="time" id="second">56</div>
+                    <div class="label">SECONDS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const Days = document.getElementById('day');
+    const Hours = document.getElementById('hour');
+    const Minutes = document.getElementById('minute');
+    const Seconds = document.getElementById('second');
+    let DaysTimer = 2;
+    let HoursTimer = 17;
+    let MinutesTimer = 45;
+    let SecondsTimer = 56;
+    setInterval(()=>{
+        SecondsTimer--;
+        if (SecondsTimer == 0){
+            if (DaysTimer >= 0 || HoursTimer >= 0 || MinutesTimer > 0){
+                MinutesTimer--;
+                SecondsTimer = 60;
+            }
+            else{
+                clearInterval();
+            }
+        }
+        if (MinutesTimer == 0){
+            if (DaysTimer >= 0 || HoursTimer > 0){
+                HoursTimer--;
+                MinutesTimer = 60;
+            }
+        }
+        if (HoursTimer == 0){
+            if (DaysTimer > 0){
+                DaysTimer--;
+                HoursTimer = 60;
+            }
+        }
+        Seconds.textContent = SecondsTimer;
+        Minutes.textContent = MinutesTimer;
+        Hours.textContent = HoursTimer;
+        Days.textContent = DaysTimer;
+    }, 1000);
+</script>
+</html>
