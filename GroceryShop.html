@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Shop</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .Brand{
+            font-size: 2em;
+        }
+        .grocery-prompt{
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            height: 500px;
+            background-color: hsl(0, 0%, 97%);
+            align-items: center;
+            box-shadow: 0px 0px 10px hsl(0, 0%, 78%);
+        }
+        .grocery-prompt > *{
+            margin-top: 20px;
+        }
+        .main-section{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 75%;
+            align-items: center;
+        }
+        .submit{
+            border: none;
+            background-color: hsl(219, 74%, 56%);
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .EnterDetails{
+            width: 225px;
+            height: 25px;
+            border: none;
+
+        }
+        .grocery-list{
+            display: flex;
+            width: 90%;
+            height: 70%;
+            background-color: white;
+            flex-direction: column;
+            overflow-y: scroll;
+            color: white;
+        }
+        .item{
+            display: flex;
+            width: 100%;
+            height: 30px;
+            flex-direction: row;
+            background-color: rebeccapurple;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .fa-solid{
+            margin-right: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="grocery-prompt">
+        <div class="Brand">Grocery Bud</div>
+        <div class="main-section">
+            <input type="text" class="EnterDetails" placeholder="e.g. Eggs">
+            <button class="submit" onclick="addorEdit()">Add</button>
+        </div>
+        <div class="grocery-list">
+        </div>
+    </div>
+</body>
+<script>
+    let ElementtobeEdited;
+    const grocerylist = document.querySelector('.grocery-list');
+    const TypeBar = document.querySelector('.EnterDetails');
+    const btn = document.querySelector('.submit');
+    function addorEdit(){
+        if (btn.textContent == "Add"){
+            const unqid = new Date().getTime().toString();
+            let CreatedElement = document.createElement("div");
+            CreatedElement.innerHTML = `<div class="item" id="${unqid}"><span class="item-name">${TypeBar.value}</span>
+            <div class="options">
+                <i class="fa-solid fa-pen Edit" onclick="EditElement(this)"></i>
+                <i class="fa-solid fa-trash Delete" onclick="DeleteElement(this)"></i>
+            </div>
+            </div>`;
+            grocerylist.appendChild(CreatedElement);
+            setDefault();
+        }
+        else{
+            ElementtobeEdited.textContent = TypeBar.value;
+            setDefault();
+            btn.textContent = "Add";
+        }
+    }
+    function setDefault(){
+        TypeBar.value = "";
+    }
+    function DeleteElement(elem){
+        elem.parentElement.parentElement.remove();
+    }
+    function EditElement(elem){
+        ElementtobeEdited = elem.parentElement.parentElement.querySelector('.item-name');
+        btn.textContent = "Edit";
+        TypeBar.value = ElementtobeEdited.textContent;
+    }
+</script>
+</html>
