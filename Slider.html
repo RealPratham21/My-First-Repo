@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: hsl(180, 100%, 92%);
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            height: 700px;
+            width: 500px;
+            box-shadow: 0px 0px 10px gray;
+            padding: 20px;
+        }
+        .image-slider{
+            width: 500x;
+            height: 500px;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+        }
+        .images{
+            width: 500px;
+            height: 500px;
+            box-sizing: border-box;
+            border: 4px double grey;
+            transition: all 1s ease-in-out;
+        }
+        .btns{
+            display: flex;
+            width: 100%;
+            height: 100px;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            margin-left: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 1.5em;
+            border: none;
+            background-color: hsl(340, 86%, 78%);
+            color: rgb(34, 33, 33);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .swipeLeft{
+            animation-name: goLeft;
+            animation-duration: 3s;
+        }
+        .swipeRight{
+            animation-name: goRight;
+            animation-duration: 3s;
+        }
+        @keyframes goLeft {
+            to{
+                margin-left: -100%;
+            }
+        }
+        @keyframes goRight {
+            to{
+                margin-right: -100%;
+            }
+        }
+        .status{
+            display: flex;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="image-slider">
+            <img src="https://w0.peakpx.com/wallpaper/265/481/HD-wallpaper-nature.jpg" alt="" class="images" id="Img1">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2023/3/TF/BK/UW/103578143/3d-nature-wallpaper-500x500.jpg" alt="" class="images" id="Img2">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2021/1/NJ/GN/AS/75393646/3d-waterfall-nature-wallpaper.jpg" alt="" class="images" id="Img3">
+            <img src="https://cdn.outsideonline.com/wp-content/uploads/2023/06/hiker-waterfall-nature_s.jpg" alt="" class="images" id="Img4">
+            <img src="https://i.natgeofe.com/n/49f1c59b-095d-47a6-b72c-92bc6740a37c/tpc18-outdoor-gallery-1693450-12040196_03_square.jpg" alt="" class="images" id="Img5">
+        </div>
+        <div class="btns">
+            <button id="prev" onclick="PrevImg()">Prev</button>
+            <button id="next" onclick="NextImage()">Next</button>
+        </div>
+        <div class="status">Now Displaying Image: 1</div>
+</div>
+</body>
+<script>
+    const PrevBtn = document.getElementById('prev');
+    const NextBtn = document.getElementById('next');
+    const Images = document.querySelectorAll("img");
+    const status = document.querySelector('.status');
+    let currentElement = 0;
+    PrevBtn.addEventListener("click", ()=>{
+        if (currentElement == 0){
+            currentElement = Images.length - 1;
+            Images.forEach(img =>{
+                img.style.transform = `translateX(-${currentElement*100}%)`;
+            });
+        }
+        else{
+            currentElement--;
+            Images.forEach(img =>{
+                img.style.transform = `translateX(${currentElement*100}%)`;
+            });
+        }
+        status.textContent = `Now Displaying Image: ${currentElement+1}`;
+    })
+    NextBtn.addEventListener("click", ()=>{
+        if (currentElement == Images.length-1){
+            currentElement = 0;
+            Images.forEach(img =>{
+                img.style.transform = `translateX(${currentElement*100}%)`;
+            });
+        }
+        else{
+            currentElement++;
+            Images.forEach(img =>{
+                img.style.transform = `translateX(-${currentElement*100}%)`;
+            });
+        }
+        status.textContent = `Now Displaying Image: ${currentElement+1}`;
+    })
+</script>
+</html>
